@@ -1,5 +1,13 @@
 # Moody Style Guide: HTML Reference
 
+October 7 Test-release corrections: Basic-block h2s default to Charcoal, while
+explicit approved color classes still win. A section background does not
+automatically make Basic copy a white bordered card. Outline buttons work with
+or without a size modifier; author them as `ut-btn ut-btn--secondary`.
+These corrections require the new theme release; verify the target environment
+before relying on them. See `blocks.md` for the related Hero 8, Contact Info and
+Flex Grid Flip corrections.
+
 Condensed from https://moody.utexas.edu/style-guide (captured 2026-10-07). The full machine-readable allowlist, with the CSS each class produces, is `scripts/allowed_classes.json`. If the live guide disagrees with this file, the live guide wins.
 
 ## Contents

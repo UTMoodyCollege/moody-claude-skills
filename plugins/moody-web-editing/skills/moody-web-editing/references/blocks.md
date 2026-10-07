@@ -1,5 +1,34 @@
 # Moody Layout Builder Blocks
 
+## October 7 editor-feedback release (Test review)
+
+The fixes below are in site-manager `1ddc7c1b5870525ba01e89aa16ad0f740e460efc`.
+They are a new Test release, not evidence that every production page already
+uses them. Prefer the target site's installed release and rendered preview.
+
+- **Hero 8:** the earlier formatter and template dropped CTAs, and its
+  differently named subheading bypassed text-color rules. The corrected mode
+  renders its CTA and uses the same subheading/color contract as Hero 7.
+  White is the default; select an overlay and inspect contrast against the
+  actual image. Historical placement counts do not establish a house standard.
+- **Basic blocks:** plain h2s now default to Charcoal. Explicit approved text
+  color utilities still win. Section backgrounds no longer add an automatic
+  white bordered box to inline or reusable Basic blocks. Explicit block border
+  and background styles are separate settings and must remain intentional.
+- **Contact Info:** new copy defaults to Flex HTML; existing saved formats are
+  preserved, and Drupal's normal format permissions still apply. Switch an
+  existing Restricted HTML value explicitly when formatting is needed.
+- **Flex Grid Flip:** card height follows the longer face rather than clipping
+  copy at four per row. Long-copy sizing is checked at 390, 768 and 1440px with
+  the existing flip script. This is not a blanket accessibility certification;
+  prefer ordinary cards for essential long-form content and test touch/keyboard
+  access on the target page.
+- **Outline buttons:** use `ut-btn ut-btn--secondary`; size classes are optional,
+  not a workaround required to make the label readable.
+
+The older audit descriptions below are dated observations, not guarantees of
+current release behavior.
+
 Reference for the custom blocks editors add in Layout Builder (**Layout → Add block**) on moody.utexas.edu. Sources: the add-block forms on the test site, rendered markup on production pages, and the Moody block usage report (`/admin/reports/moody-block-reports`), all captured 2026-10-07. Usage counts are placements across the site and show which patterns are well-tested.
 
 Every block has a required admin **Title**, which isn't shown unless **Display title** is checked. When it is checked, the title renders as `<h2 class="block-headline-h2 ut-h3">` above the block. This is the most reliable way to give a block a real section heading. Every block also offers the same **Block Styles**: borders (with or without background), readable width, and add/remove/increase top and bottom margin.
