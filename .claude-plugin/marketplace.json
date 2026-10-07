@@ -1,0 +1,12 @@
+{
+  "name": "moody-claude-skills",
+  "owner": { "name": "Moody College of Communication Web Team" },
+  "metadata": { "description": "Claude skills for editing the Moody College of Communication website (moody.utexas.edu)." },
+  "plugins": [
+    {
+      "name": "moody-web-editing",
+      "source": "./plugins/moody-web-editing",
+      "description": "Guided, on-brand HTML authoring for moody.utexas.edu Drupal body fields using the Moody style guide's utility classes."
+    }
+  ]
+}

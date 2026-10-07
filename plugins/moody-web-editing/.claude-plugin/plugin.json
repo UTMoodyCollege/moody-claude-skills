@@ -1,0 +1,6 @@
+{
+  "name": "moody-web-editing",
+  "version": "1.1.0",
+  "description": "Guided, on-brand HTML authoring for moody.utexas.edu Drupal body fields using the Moody style guide's utility classes.",
+  "author": { "name": "Tyler Fahey" }
+}
