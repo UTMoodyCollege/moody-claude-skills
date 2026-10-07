@@ -2,6 +2,11 @@
 
 ## moody-web-editing
 
+### 1.3.1 (2026-10-07)
+- Document the six editor-feedback corrections, distinguishing the new Test
+  release from older production observations and avoiding a blanket Hero 8
+  house-standard recommendation.
+
 ### 1.3.0 (2026-10-07)
 - `references/blocks.md` adds the next six most-used blocks:
   - **Moody Quotation:** all 5 styles, plus the Split options for palette, size, alignment and image side
