@@ -1,75 +1,86 @@
 ---
 name: moody-web-editing
-description: Guided HTML authoring for the Moody College of Communication website (moody.utexas.edu, a UT Austin Drupal site). Produces paste-ready HTML fragments for Drupal/CKEditor body fields using only the documented Moody/UT utility classes (ut-*, text-ut-*, bg-ut-*, ut-surface-*, ut-btn, ut-cta-link), brand colors and accessible markup. Use this whenever someone is writing, editing, restyling or reviewing web content, HTML, a page section, card grid, callout, table, button or layout for Moody, Moody College, UT Austin communication school pages, or mentions the Moody style guide — even if they just say "make this look on-brand for our site" or paste rough copy to turn into a web page section.
+description: Guided page building for the Moody College of Communication website (moody.utexas.edu, a UT Austin Drupal Layout Builder site). Plans pages using Moody's own Layout Builder blocks (Moody Hero, Showcase, Flex Grid, Promo Unit, Featured Highlight, Flex Color Blocks, Accordion, Contact Info), says which block, view mode and field values to use, and writes paste-ready HTML for Basic blocks using only the documented Moody/UT utility classes (ut-*, ut-surface-*, ut-btn, ut-cta-link). Use this whenever someone is building, editing, restyling or reviewing a Moody web page, section, hero, card grid, people list, FAQ, callout, table or layout, asks which block to use, or mentions the Moody style guide or Layout Builder, even if they just say "make this look on-brand for our site" or paste rough copy to turn into a page.
 ---
 
 # Moody Web Editing
 
-You're helping a Moody College web editor turn content into HTML that drops straight into a Drupal body field on moody.utexas.edu and looks right without any extra CSS. The site's theme already styles plain HTML elements and ships a fixed catalog of utility classes; good output leans on those and nothing else.
+You're helping a Moody College web editor build pages on moody.utexas.edu. Pages are assembled in Drupal **Layout Builder**: sections (one to four columns) hold blocks. Moody maintains a set of structured blocks with managed images and fixed designs, plus a **Basic block** that takes free HTML. Good output picks the right block for each piece of content. It fills structured blocks with field values, and writes clean, catalog-only HTML only where a Basic block is genuinely the best fit.
 
-Source of truth: https://moody.utexas.edu/style-guide. Details are in `references/style-guide.md` (read it before writing HTML) and `references/recipes.md` (read it when building layouts).
+References (read when relevant):
+- `references/block-chooser.md` maps each scenario to a block and view mode, with page patterns. **Read it whenever planning a page or section.**
+- `references/blocks.md` covers every block's fields, view modes, image sizes, rendered output and quirks. Read it before specifying a structured block.
+- `references/style-guide.md` covers classes and colors for Basic block HTML (from https://moody.utexas.edu/style-guide). Read it before writing HTML.
+- `references/recipes.md` holds Basic block layout patterns.
 
 ## Why the constraints matter
 
-- **Only documented classes.** The site's CSS and its AI allowlist are generated from the same catalog. An invented class (`ut-card`, `ut-text-orange`, Tailwind's `rounded-lg`) silently does nothing, so the editor sees broken layout and doesn't know why.
-- **No inline `style=""`, `<style>`, or `<script>`.** CKEditor's text filters typically strip them, and they bypass the brand system. If something truly can't be done with the catalog, say so and suggest the Hero Builder / Card Builder blocks or asking the web team.
-- **Square corners, current palette.** The brand retired the teal/bright palette and rounded-corner options; don't generate them.
-- **Fragments, not pages.** Editors paste into a body field that is already inside the page, so no `<html>`, `<head>`, `<body>`, site header or footer. The page title is already the `<h1>`, so content headings start at `<h2>`.
+- **Structured blocks first.** A Moody Hero or Flex Grid gives editors image cropping, consistent design and simple fields. HTML that imitates one is harder to maintain and drifts from the brand. Use a Basic block when no structured block fits: long copy, tables, stat rows, custom callouts.
+- **Only documented classes** in Basic block HTML. The site's CSS and its AI allowlist come from the same catalog, so an invented class (`ut-card`, `rounded-lg`) silently does nothing.
+- **No inline `style=""`, `<style>`, or `<script>`.** The editor strips them, and they bypass the brand system.
+- **Square corners, core palette.** Burnt orange, charcoal, limestone/paper, white and black. Avoid the bright accents (Bluebonnet, Turquoise, Turtlepond), even where an old option still offers them.
+- **Fragments, not pages.** The page title is already the `<h1>`, so content headings start at `<h2>`.
 
 ## Workflow
 
 ### 1. Get the context (briefly)
 
-If the request is clear, go straight to drafting. Otherwise ask only what changes the HTML, in one short message:
-- What the content is and who it's for (news blurb, program overview, event, faculty list, resource links…)
-- Where it goes: a normal body field (default), or something the editor wants to look like a hero, card grid, callout
-- Any links, images (with alt text), or CTAs they need
+If the request is clear, go straight to planning. Otherwise ask only what changes the plan, in one short message:
+- What the content is and who it's for: page type, audience, goal
+- Whether they have photos, and of what (heroes, showcases and grids need images)
+- Links and calls to action
 
-Use sensible defaults for anything not given and mention them, rather than stalling.
+Use sensible defaults for anything not given and say what you assumed.
 
-### 2. Pick structure before styling
+### 2. Plan the page: sections and blocks
 
-Decide semantics first: headings in order (h2 → h3 → h4, no skipping), real lists for lists, `<table>` only for tabular data, `<a>` for navigation and `<button>` only for actions. Then add layout utilities from the catalog. Prefer grid/flex utilities for layout over positioning; positioning can overlap text at browser zoom.
+Using `block-chooser.md`, map each piece of content to a section layout, a block and a view mode. Keep one hero per page, give each section a real heading, and avoid long runs of the same block. Present the plan as a short ordered list before the details when the page has more than two or three blocks.
 
-### 3. Write the HTML
+### 3. Specify each block
 
-Follow `references/style-guide.md`. Key habits:
-- Plain elements first — h2–h6, p, ul/ol, blockquote, table already look on-brand. Add classes only for layout, emphasis, or color.
-- Responsive: mobile-first base class, then `sm:` (576px) `md:` (768px) `lg:` (992px) `xl:` (1200px) overrides, e.g. `ut-cols-1 md:ut-cols-2 lg:ut-cols-3`.
-- Color: use `ut-surface-{white,paper,charcoal,orange}` for blocks with backgrounds, since they set an approved text/background pair together. Use `text-ut-*` / `bg-ut-*` only in approved contrasting combinations (see the style guide reference).
-- Links: descriptive text ("View the B.S. in Journalism requirements", not "click here"). Use `ut-cta-link` for a call-to-action link, `ut-btn` for a button-styled link. External links get `ut-cta-link--external` when styled as a CTA.
-- Images: meaningful `alt`, or `alt=""` if purely decorative. Wrap with `<figure>`/`<figcaption>` when there's a caption.
-- Tables: `class="tablesaw tablesaw-stack"` with `<thead>`, `<th scope="col">` so they stack on mobile.
+**Structured blocks:** give a block spec the editor can follow field by field, using the field names from `blocks.md`:
 
-### What the editor does to your HTML
+```
+Block 2 · Moody Flex Grid · view mode: Circular Style · section: one column, container width
+- Title: "Leadership" (Display title: on)
+- Items per row: Four
+- Item 1: Image: headshot (square, 500×500) · Item Headline: "Jane Doe" · Copy: "Dean" · URL: /about/leadership/jane-doe
+- …
+```
 
-Tested 2026-10-07 on the Moody test site, using a Layout Builder **Basic block** with the **Flex HTML** text format. Every catalog class survived CKEditor 5, and the theme's CSS styled them all. CKEditor still rewrites some markup, so write with that in mind:
-- **Stripped:** `aria-label` on `<aside>`/`<section>`, and `data-*` attributes such as `data-tablesaw-minimap`. Put a visible heading inside landmark elements rather than relying on `aria-label`.
-- **Wrapped:** a bare `<a>` directly inside `<article>`/`<div>` becomes `<p><a>…</a></p>`. That's harmless, but writing the `<p>` yourself keeps the source predictable.
-- **Added:** `data-list-item-id` on `<li>`, and a `table` class on tables. Both are expected.
-- `id` attributes survive, so in-page anchors like `href="#schedule"` work.
+Include image guidance (subject, ratio, minimum size) and alt text for every image. Mark anything the editor must supply, such as `[photo needed]`.
 
-### 4. Validate
+**Basic blocks:** write the HTML following `style-guide.md`:
+- Plain elements first. h2–h6, p, lists, blockquote and table already look on-brand.
+- Responsive and mobile-first: `ut-cols-1 md:ut-cols-2 lg:ut-cols-3`. Breakpoints are sm 576px, md 768px, lg 992px and xl 1200px.
+- For colored panels, use `ut-surface-{white,paper,charcoal,orange}`, since they set an approved text/background pair.
+- Links: write descriptive link text. Use `ut-cta-link` for CTAs and `ut-btn` for button-styled links.
+- Images need meaningful `alt`. Tables use `class="tablesaw tablesaw-stack"` with `<th scope="col">`.
 
-Save the fragment to a file and run:
+What the editor (CKEditor 5, Flex HTML) does to your HTML. Tested 2026-10-07; every catalog class survives:
+- **Stripped:** `aria-label` on landmarks, and `data-*` attributes. Use visible headings instead.
+- **Wrapped:** a bare `<a>` inside `<div>`/`<article>` becomes `<p><a>`. Write the `<p>` yourself.
+- **Added:** `data-list-item-id` on `<li>`, and a `table` class. Both are harmless.
+- **Kept:** `id` attributes, so in-page anchors like `#schedule` work.
+
+### 4. Validate Basic block HTML
 
 ```bash
 python3 <skill-dir>/scripts/check_moody_html.py path/to/fragment.html
 ```
 
-It flags unknown classes, inline styles/scripts, rounded corners, skipped heading levels, missing alt text, and vague link text. Fix what it reports (or explain why a warning is fine) before handing back.
+It flags unknown classes, inline styles, stripped attributes, rounded corners, skipped headings, missing alt text and vague link text. Fix what it reports, or explain why a warning is fine.
 
 ### 5. Deliver
 
-Give the editor:
-1. The HTML in a single ```html code block, ready to paste into CKEditor's **Source** view. If the request is for several sections of a page, give one code block per section, since each becomes its own Basic block in Layout Builder and editors can reorder them.
-2. A few bullets on what you chose and any defaults you assumed (e.g. "used placeholder link `#` for the RSVP — replace with the real URL").
-3. If part of the request needs something beyond body-field HTML (video backgrounds, image overlays, managed buttons), point them to Hero Builder / Card Builder instead of faking it.
+1. The page plan, as an ordered list of blocks with their view modes.
+2. One spec or one ```html block per Layout Builder block, in page order.
+3. A few bullets covering assumptions, placeholders to replace (links, photos), and anything to preview because it's new or untested on live pages.
 
-## Reviewing existing HTML
+## Reviewing existing pages or HTML
 
-When asked to review or clean up existing markup, run the checker on it, then rewrite: swap inline styles and unknown classes for catalog equivalents, fix heading order and alt text, and summarize the changes in a short list.
+Run the checker on any HTML, then rewrite it: replace inline styles and unknown classes with catalog equivalents, and fix heading order and alt text. When a Basic block is hand-building something a structured block does (a card grid, hero or FAQ), suggest the block and view mode that should replace it.
 
 ## Extending this skill
 
-This skill is meant to grow. Additional context (editorial voice and tone, AP/UT style rules, Hero/Card Builder field guidance, department-specific patterns) goes in new files under `references/` with a one-line pointer added to this section, so the core workflow stays short.
+Add new background material as files under `references/`, with a one-line pointer in the reference list above, so this file stays short.

@@ -6,7 +6,7 @@
     {
       "name": "moody-web-editing",
       "source": "./plugins/moody-web-editing",
-      "description": "Guided, on-brand HTML authoring for moody.utexas.edu Drupal body fields using the Moody style guide's utility classes."
+      "description": "Plans moody.utexas.edu pages with the right Layout Builder blocks (Hero, Showcase, Flex Grid, Promo Unit and more) and writes on-brand Basic block HTML from the Moody style guide."
     }
   ]
 }

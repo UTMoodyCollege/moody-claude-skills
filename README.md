@@ -4,7 +4,7 @@ Claude skills for people who edit the [Moody College of Communication](https://m
 
 | Skill | What it does |
 |---|---|
-| [`moody-web-editing`](plugins/moody-web-editing/skills/moody-web-editing/SKILL.md) | Turns content into HTML for moody.utexas.edu that's ready to paste into the editor, using only the classes in the [Moody style guide](https://moody.utexas.edu/style-guide). Checks it with a bundled script before handing it over. |
+| [`moody-web-editing`](plugins/moody-web-editing/skills/moody-web-editing/SKILL.md) | Plans moody.utexas.edu pages with the right Layout Builder block for each section (Moody Hero, Showcase, Flex Grid, Promo Unit, Featured Highlight, Flex Color Blocks, Accordion, Contact Info), gives field-by-field instructions for each block, and writes Basic block HTML that's ready to paste in, using only classes from the [Moody style guide](https://moody.utexas.edu/style-guide). |
 
 ## Install
 
@@ -32,6 +32,8 @@ Just ask in plain language. For example:
 - "Turn this program blurb into a three-card section for the Moody site"
 - "Make an on-brand callout for the spring application deadline"
 - "Clean up this HTML I pasted from an old page so it uses the Moody classes"
+- "Plan a landing page for our new center. Which blocks should I use?"
+- "We need a people page for 12 staff with headshots"
 
 Claude asks a quick question if anything is unclear. It writes one HTML snippet per page section, checks it, and tells you about any placeholder links or images to swap out. To use a snippet, add a **Basic block** in Layout Builder, switch the editor to **Source**, and paste.
 

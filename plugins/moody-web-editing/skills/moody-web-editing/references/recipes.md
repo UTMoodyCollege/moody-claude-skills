@@ -28,7 +28,7 @@ Starting points built only from catalog classes. The first four come straight fr
 ```
 
 ## Hero-like content panel (style guide)
-For real heroes with media, overlays and managed buttons, use Hero Builder instead.
+For real heroes with media, overlays and managed buttons, use the Moody Hero block instead (see `blocks.md`).
 ```html
 <section class="ut-surface-charcoal ut-p-6 lg:ut-p-12">
   <div class="ut-measure-standard ut-ml-auto">
