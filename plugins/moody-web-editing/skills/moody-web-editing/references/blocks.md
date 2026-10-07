@@ -15,8 +15,14 @@ Every block has a required admin **Title**, which isn't shown unless **Display t
 8. Moody Flex Color Blocks
 9. Moody Accordion
 10. Moody Contact Info
-11. Page-template field blocks
-12. Shared link options
+11. Moody Quotation
+12. Utexas Flex Content Area
+13. Utexas Promo List
+14. Utexas Image Link
+15. Moody Focus Areas
+16. Call to Action (legacy)
+17. Page-template field blocks
+18. Shared link options
 
 ---
 
@@ -191,13 +197,121 @@ Recommend only the neutral and burnt-orange backgrounds. Turtlepond, Turquoise a
 - **Output:** `.moody-contact-block` / `.moody-contact-info-wrapper`, a styled contact panel.
 - **Use for:** "Visit us" or "Contact us" panels with an address, hours, phone, email and an appointment link. Usually near the end of a page or in a sidebar column.
 
-## 11. Page-template field blocks
+## 11. Moody Quotation (`inline_block:moody_quotation`) · 60 placements on 23 pages
 
-Moody Feature Page (news) templates place node fields as blocks: Subtitle, Body, Author, Created date and Links. Standard pages place Metatags and Links. These come from the content type's template. Edit their content on the node **Edit** tab, not in Layout, and leave them in place.
+**Inputs**
+- **Text:** Quote, Author, and Attribution details (optional, shown after the author).
+- **Image:** optional. Used by the Split style; at least 1200px wide.
+- **Link:** optional URL, link text and icon.
+- **Style:** pick one of the five styles below. The block has a single view mode (`full`), so the look is set by this field, not by a view mode.
+- **Split quote appearance** (Split style only):
+  - **Text and background color:** white on UT blue, white on burnt orange, white on charcoal, or charcoal on white.
+  - **Text size:** small, medium or large.
+  - **Text alignment:** left, center or right.
+  - **Image position:** left or right.
 
-## 12. Shared link options
+| Style | Look | Live usage (sampled) |
+|---|---|---|
+| `orange` | White quote text on a burnt-orange panel, author in burnt orange below | **most common** (20 of 27) |
+| `grey` | White text on a charcoal panel with a burnt-orange left border | 4 of 27 |
+| `split` | Photo fills one half, quote and caption the other half (`figure` / `blockquote` / `figcaption`) | 3 of 27 (new, added Sept 2026) |
+| `default` | Dark text, no background, indented | rare |
+| `feature` | Large burnt-orange quote, centered, max width 74rem | rare |
 
-Hero, Flex Grid, Showcase, Promo Unit, Featured Highlight, Flex Color Blocks and Contact Info share the same link fields:
+**Output**
+- Orange, grey, default and feature render `div.quotation-wrapper.{style}`, with the quote in `p.quote` and the author in `p.author > strong`.
+- Split renders proper `<figure><blockquote>…</blockquote><figcaption>`.
+
+**Use for**
+- **Student, alumni or faculty voices** on program, center and news pages. A quote between copy sections breaks up long pages well.
+- **Split** when you have a good portrait of the speaker.
+- **Feature** for a single standout line, such as a mission statement or headline quote.
+- Prefer the orange or charcoal palettes; UT blue is outside the core Moody palette.
+
+**Writing tips:** keep quotes to 1–3 sentences, and put the person's role and class year in Attribution details.
+
+## 12. Utexas Flex Content Area (`inline_block:utexas_flex_content_area`) · 43 placements on 25 pages
+
+**Inputs** (add as many items as you need), each with:
+- **Media:** an image, cropped 3:2 (1000×666 ideal), or an embedded video.
+- **Headline:** h3. Links to the item's Call to Action URL.
+- **Copy:** rich text.
+- **List of links:** any number of extra links.
+- **Call to Action:** URL, link text and icon.
+
+**View modes:** `full` (30) and `default` (12) render identically. `utexas_flex_content_area_3` (1) is legacy. The add form has **no view-mode selector**, so new blocks use the default.
+
+**Output:** `.ut-flex-content-area-wrapper` is a CSS grid. In a one-column, container-width section it lays items out **2 per row** on desktop and 1 per row on mobile. Each item has `.image-wrapper`, then `.content-wrapper` (`h3.ut-headline`, `.ut-copy`, links).
+
+**Use for**
+- Two-up (or more) feature items that each have an image or video, a heading, a paragraph and a few links. Examples: "Focus areas", program tracks, initiative summaries.
+- Prefer Flex Grid **card** style when you want 3–4 per row or button CTAs. Use Flex Content Area when items need a **list of links** or an **embedded video**.
+
+## 13. Utexas Promo List (`inline_block:utexas_promo_list`) · 29 placements on 23 pages
+
+**Inputs**
+- **List Headline:** renders as `h3.ut-headline--underline`, with a Bluebonnet-blue underline.
+- **Items** (add as many as you need), each with:
+  - **Image:** square 1:1, 170×170 ideal.
+  - **Item Headline:** h3. Links when there's a URL.
+  - **Copy:** rich text.
+  - **URL:** links both the headline and the image.
+
+| View mode | Layout | Uses |
+|---|---|---|
+| `default` | Single list, 1 item per row: small square image beside the text | 26 |
+| `utexas_promo_list_2` | Single list, 2 items per row on wider screens | 3 |
+| `utexas_promo_list_4` | Single list, stacked (image above text) | 0 |
+| `utexas_promo_list_3` | Two lists side by side | 0 |
+
+**Use for**
+- Compact lists of people, partners, guests or resources, each with a small square thumbnail and a short blurb. Examples: center people pages, guest speakers, partner organizations.
+- For headshot-led people grids, prefer Flex Grid circular. Promo List suits longer bios beside a small photo.
+- The list headline and the item headlines are both `<h3>`. Turn on *Display title* to get a proper `<h2>` above them.
+
+## 14. Utexas Image Link (`inline_block:utexas_image_link`) · 22 placements on 13 pages
+
+**Inputs**
+- **Image:** fills the width of its region.
+- **Link:** URL, link text, new-window option and icon.
+
+**Output:** `div.utexas-image-link > a > picture > img`. The **Link text is not rendered**, so the image's **alt text is the link's only accessible name**. Write the alt text to describe the destination, for example "Photo album: Tainted Blood screening panel", not just the image.
+
+**Use for:** a clickable image such as a report cover, event poster, photo album, or partner logo linking out. It's usually placed in a narrow column next to text.
+
+## 15. Moody Focus Areas (`inline_block:moody_focus_areas`) · 16 placements on 15 pages
+
+**Inputs**
+- **Focus Areas Items Title:** optional.
+- **Items per row:** two, three or four.
+- **Space between items** and **space between rows:** touching, small, medium or max.
+- **Block call to action:** URL, link text and icon.
+- **Items** (add as many as you need), each with:
+  - **Image:** square 1:1, 280×280 ideal. It displays as a small (~100px) centered icon-style image.
+  - **Item Headline:** h3.
+  - **Copy**
+  - **URL**
+
+**Output:** `.focus-areas-wrapper .focus-areas-items.{n}-per-row.gap-{size}.gap-row-{size}`. Each item is centered, with the small image above a centered headline and copy (220px wide at most).
+
+**Use for**
+- At-a-glance program facts or pillars with icons or small images. Examples: "Two Year Program · Online · Cohort-based", writing-center services, certificate highlights.
+- **3 per row** with medium spacing is the most common setup.
+- Best with short headlines (1–4 words) and an optional one-line copy. For bigger photos, use Flex Grid.
+
+## 16. Call to Action (`inline_block:call_to_action`) · 14 placements · legacy
+
+**Inputs:** one or more links (URL, link text, icon), rendered as `a.button.ut-btn`.
+
+**Status:** it's **no longer offered** in the Add block list. Existing placements still render. To add a button now, use a Basic block with `<a class="ut-btn" href="…">`, or a CTA field on a structured block.
+
+## 17. Page-template field blocks
+
+Moody Feature Page (news) templates place node fields as blocks: Subtitle, Body, Author, Created date and Links. Standard pages place Metatags and Links, and Subsite pages place Metatags. These come from the content type's template. Edit their content on the node **Edit** tab, not in Layout, and leave them in place.
+
+## 18. Shared link options
+
+Every block with a link (Hero, Flex Grid, Showcase, Promo Unit, Promo List, Featured Highlight, Flex Color Blocks, Flex Content Area, Focus Areas, Quotation, Image Link, Contact Info) shares the same link fields:
 - **URL:** autocomplete for internal content, or a path or external URL.
 - **Link text**
 - **Open in new window/tab:** use sparingly.

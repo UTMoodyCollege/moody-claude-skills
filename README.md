@@ -4,7 +4,7 @@ Claude skills for people who edit the [Moody College of Communication](https://m
 
 | Skill | What it does |
 |---|---|
-| [`moody-web-editing`](plugins/moody-web-editing/skills/moody-web-editing/SKILL.md) | Plans moody.utexas.edu pages with the right Layout Builder block for each section (Moody Hero, Showcase, Flex Grid, Promo Unit, Featured Highlight, Flex Color Blocks, Accordion, Contact Info), gives field-by-field instructions for each block, and writes Basic block HTML that's ready to paste in, using only classes from the [Moody style guide](https://moody.utexas.edu/style-guide). |
+| [`moody-web-editing`](plugins/moody-web-editing/skills/moody-web-editing/SKILL.md) | Plans moody.utexas.edu pages with the right Layout Builder block for each section (Moody Hero, Showcase, Flex Grid, Promo Unit, Promo List, Featured Highlight, Flex Color Blocks, Flex Content Area, Focus Areas, Quotation, Image Link, Accordion, Contact Info), gives field-by-field instructions for each block, and writes Basic block HTML that's ready to paste in, using only classes from the [Moody style guide](https://moody.utexas.edu/style-guide). |
 
 ## Install
 
